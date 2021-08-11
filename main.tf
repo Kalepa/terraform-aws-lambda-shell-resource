@@ -20,10 +20,9 @@ module "trigger_changed_create" {
 }
 
 module "trigger_changed_destroy" {
-  //source  = "Invicton-Labs/value-changed/null"
-  //version = "0.1.1"
-  source = "../terraform-null-value-changed"
-  value  = local.trigger
+  source  = "Invicton-Labs/value-changed/null"
+  version = "0.1.1"
+  value   = local.trigger
   depends = [
     data.aws_lambda_invocation.shell_destroy
   ]
