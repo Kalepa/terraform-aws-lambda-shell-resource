@@ -1,5 +1,5 @@
 variable "lambda_shell_module" {
-  description = "An `Invicton-Labs/lambda-shell/aws` module (https://registry.terraform.io/modules/Invicton-Labs/request-signer/aws). Pass the entire module in as this parameter (e.g. `lambda_shell_module = module.lambda-shell`)."
+  description = "An `Invicton-Labs/lambda-shell/aws` module (https://registry.terraform.io/modules/Invicton-Labs/lambda-shell/aws). Pass the entire module in as this parameter (e.g. `lambda_shell_module = module.lambda-shell`)."
   type = object({
     invicton_labs_lambda_shell_arn = string
   })
