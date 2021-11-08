@@ -91,7 +91,7 @@ locals {
 // This keeps the output value in state until it's re-created
 module "state_keeper" {
   source  = "Invicton-Labs/state-keeper/null"
-  version = "~> 0.1.1"
+  version = "~> 0.1.2"
   // This convoluted expression just forces the shell_destroy data source to actually execute. Since the value isn't being returned anywhere, 
   // the data source won't be executed unless you tell it to use the output value in order to evaluate a conditional expression like this ternary one.
   input               = local.destroy ? (data.aws_lambda_invocation.shell_create.result == null ? local.create_result : local.create_result) : local.create_result
