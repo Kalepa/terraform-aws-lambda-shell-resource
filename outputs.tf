@@ -1,26 +1,19 @@
 output "stdout" {
   description = "The stdout output of the shell command."
-  depends_on = [
-    module.state_keeper,
-    module.trigger_changed_create
-  ]
-  value = module.state_keeper.output.stdout
+  value       = local.result.stdout
 }
 
 output "stderr" {
   description = "The stderr output of the shell command."
-  depends_on = [
-    module.state_keeper,
-    module.trigger_changed_create
-  ]
-  value = module.state_keeper.output.stderr
+  value       = local.result.stderr
 }
 
-output "exitstatus" {
+output "exit_code" {
   description = "The exit status code of the shell command."
-  depends_on = [
-    module.state_keeper,
-    module.trigger_changed_create
-  ]
-  value = module.state_keeper.output.exitstatus
+  value       = local.result.exit_code
+}
+
+output "version" {
+  description = "The version of the resource (see the `track_version` input variable)."
+  value       = var.track_version ? module.state_keeper[0].output : null
 }
