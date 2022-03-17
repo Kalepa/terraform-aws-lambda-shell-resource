@@ -23,18 +23,14 @@ module "lambda-shell-resource" {
   lambda_shell_module = module.lambda-shell
 
   // Run the command using the Python interpreter
-  create_interpreter   = ["python3"]
+  // This is the path to it in Python3.9 (which the lambda-shell module uses)
+  interpreter   = ["/var/lang/bin/python3.9"]
   // Load the command/script from a file
-  create_command       = file("describe-regions.py")
-  // Cause Terraform to fail if the function throws an error when creating the resource
-  create_fail_on_error = true
-
-  // The interpreter to use for the command to run when the resource is destroyed
-  destroy_interpreter   = ["bash"]
-  // The command to run when the resource is destroyed
-  destroy_command       = "echo 'destroying resource'"
-  // Cause Terraform to fail if the function throws an error when destroying the resource
-  destroy_fail_on_error = true
+  command       = file("describe-regions.py")
+  // Cause Terraform to fail if the command returns a non-zero exit code
+  fail_on_nonzero_exit_code = true
+  // Cause Terraform to fail if the command outputs anything to stderr
+  fail_on_stderr = true
 }
 
 output "shell-resource" {
