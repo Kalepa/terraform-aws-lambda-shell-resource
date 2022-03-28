@@ -1,8 +1,6 @@
-resource "aws_lambda_invocation" "shell" {
-  function_name = var.lambda_shell_module.invicton_labs_lambda_shell_arn
-  triggers      = var.triggers
+locals {
   input = jsonencode({
-    interpreter               = var.interpreter
+    interpreter = var.interpreter
     // Remove carriage returns from commands, since they'll be running in a Linux environment
     command                   = replace(replace(var.command, "\r", ""), "\r\n", "\n")
     fail_on_nonzero_exit_code = var.fail_on_nonzero_exit_code
@@ -11,6 +9,12 @@ resource "aws_lambda_invocation" "shell" {
     timeout                   = var.timeout == null ? null : (var.timeout <= 0 ? null : var.timeout)
     environment               = var.sensitive_environment == null || length(var.sensitive_environment) == 0 ? (var.environment == null ? {} : var.environment) : sensitive(merge((var.environment == null ? {} : var.environment), var.sensitive_environment))
   })
+}
+
+resource "aws_lambda_invocation" "shell" {
+  function_name = var.lambda_shell_module.invicton_labs_lambda_shell_arn
+  triggers      = var.triggers
+  input         = var.suppress_console ? sensitive(local.input) : local.input
 }
 
 module "state_keeper" {

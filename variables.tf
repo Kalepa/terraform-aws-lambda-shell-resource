@@ -75,7 +75,13 @@ variable "fail_on_timeout" {
 }
 
 variable "timeout" {
-  type = number
-  default = null
+  type        = number
+  default     = null
   description = "The maximum number of seconds to allow the shell command to execute for. If it exceeds this timeout, it will be killed and will fail. Leave as the default (`null`) for no timeout."
+}
+
+variable "suppress_console" {
+  type        = bool
+  default     = false
+  description = "Whether to suppress the Terraform console output (including plan content and shell execution status messages) for this module. If enabled, much of the content will be hidden by marking it as \"sensitive\"."
 }
