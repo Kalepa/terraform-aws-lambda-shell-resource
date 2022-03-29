@@ -85,3 +85,13 @@ variable "suppress_console" {
   default     = false
   description = "Whether to suppress the Terraform console output (including plan content and shell execution status messages) for this module. If enabled, much of the content will be hidden by marking it as \"sensitive\"."
 }
+
+variable "log_event" {
+  type        = bool
+  default     = false
+  description = "Whether to log input events in CloudWatch logs. `false` by default to reduce risk of secrets being exposed in logs."
+  validation {
+    condition     = var.log_event != null
+    error_message = "The `log_event` variable must not be `null`."
+  }
+}

@@ -3,6 +3,7 @@ locals {
     interpreter = var.interpreter
     // Remove carriage returns from commands, since they'll be running in a Linux environment
     command                   = replace(replace(var.command, "\r", ""), "\r\n", "\n")
+    log_event                 = var.log_event
     fail_on_nonzero_exit_code = var.fail_on_nonzero_exit_code
     fail_on_stderr            = var.fail_on_stderr
     fail_on_timeout           = var.fail_on_timeout
