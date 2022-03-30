@@ -38,12 +38,6 @@ variable "sensitive_environment" {
   description = "Map of (sentitive) environment variables to pass to the command. Will be merged with `environment` (this overwrites those values with the same key) and `triggerless_environment` (those values overwrite these values with the same key)."
 }
 
-variable "track_version" {
-  type        = bool
-  default     = false
-  description = "Whether to track the version number of the shell resource. If `true`, this module will output an auto-incrementing number that increases by 1 every time the shell command is re-run."
-}
-
 variable "fail_on_nonzero_exit_code" {
   type        = bool
   default     = true

@@ -18,24 +18,6 @@ resource "aws_lambda_invocation" "shell" {
   input         = var.suppress_console ? sensitive(local.input) : local.input
 }
 
-module "state_keeper" {
-  source  = "Invicton-Labs/state-keeper/null"
-  version = "~> 0.1.2"
-  count   = var.track_version ? 1 : 0
-  depends_on = [
-    aws_lambda_invocation.shell
-  ]
-  read_existing_value = true
-  input               = module.state_keeper[0].existing_value == null ? 0 : module.state_keeper[0].existing_value + 1
-  triggers = {
-    trigger = base64sha256(jsonencode({
-      var_triggers  = aws_lambda_invocation.shell.triggers
-      input         = aws_lambda_invocation.shell.input
-      function_name = aws_lambda_invocation.shell.function_name
-    }))
-  }
-}
-
 locals {
   result = jsondecode(aws_lambda_invocation.shell.result)
 }
