@@ -1,6 +1,6 @@
 # Terraform AWS Lambda Shell (Resource)
 
-This module runs shell commands in a Lambda function and treats the result like a resource (keeps the value in state and doesn't re-create unless inputs change). It also supports specifying shell commands for when the resource is destroyed. It is intended to be used with the [Invicton-Labs/lambda-shell/aws](https://registry.terraform.io/modules/Invicton-Labs/lambda-shell/aws/latest) module.
+This module runs shell commands in a Lambda function and treats the result like a resource (keeps the value in state and doesn't re-create unless inputs change). It also supports specifying shell commands for when the resource is destroyed. It is intended to be used with the [Kalepa/lambda-shell/aws](https://registry.terraform.io/modules/Kalepa/lambda-shell/aws/latest) module.
 
 ## Usage
 
