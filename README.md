@@ -7,7 +7,7 @@ This module runs shell commands in a Lambda function and treats the result like 
 `main.tf`
 ```
 module "lambda-shell" {
-  source = "Invicton-Labs/lambda-shell/aws"
+  source = "Kalepa/lambda-shell/aws"
 
   // Give the Lambda function the ability to run any request.
   // You can restrict this to whichever permissions you actually need.
@@ -17,7 +17,7 @@ module "lambda-shell" {
 }
 
 module "lambda-shell-resource" {
-  source              = "Invicton-Labs/lambda-shell-resource/aws"
+  source              = "Kalepa/lambda-shell-resource/aws"
 
   // Pass in the Lambda Shell module
   lambda_shell_module = module.lambda-shell
